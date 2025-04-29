@@ -1,0 +1,6 @@
+nombre = input("Escribe tu nombre: ")
+apellido = input("Escribe tu apellido: ") 
+edad = input("Escribe tu edad: ")
+print("Su nombre es " + nombre)
+print("Su apellido es " + apellido)
+print("Su edad es " + edad)
