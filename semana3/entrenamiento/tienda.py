@@ -59,6 +59,19 @@ def main():
     option = verify_int(option)
     option = verify_range(1,6,option,"int")
 
+    if option == 1:
+        option_1_add_products()
+    elif option == 2:
+        option_2_search_for_products()
+    elif option == 3:
+        option_3_update_product()
+    elif option == 4:
+        option_4_delete_product()
+    elif option == 5:
+        option_5_calculate_total_inventory()
+    else:
+        print("Saliendo...")
+
 
 def option_1_add_products():
 
@@ -88,23 +101,28 @@ def option_1_add_products():
 
 def option_2_search_for_products():
 
-    print("")
-
-    name = input("Ingrese el nombre del producto que desea saber su informacion: ")
-
-    if name not in products.keys():
-
-        print(f"El producto con nombre {name} no existe.")
+    if len(products) == 0:
+        print("No hay productos registrados.")
 
     else:
 
-        product = products[name]
+        print("")
 
-        print("============================")
-        print(f"Nombre del producto: {name}")
-        print(f"Precio del producto: {product[0]}")
-        print(f"Cantidad del producto: {product[1]}")
-        print("============================")
+        name = input("Ingrese el nombre del producto que desea saber su informacion: ")
+
+        if name not in products.keys():
+
+            print(f"El producto con nombre {name} no existe.")
+
+        else:
+
+            product = products[name]
+
+            print("============================")
+            print(f"Nombre del producto: {name}")
+            print(f"Precio del producto: {product[0]}")
+            print(f"Cantidad del producto: {product[1]}")
+            print("============================")
 
 
     main()
@@ -112,4 +130,76 @@ def option_2_search_for_products():
 
 def option_3_update_product():
 
+    if len(products) == 0:
+        print("No hay productos registrados.")
+
+    else:
+
+
+        name = input("Ingrese el nombre del producto al que le desea modificar el precio: ")
+
+        if name not in products.keys():
+            print(f"El producto con nombre {name} no se encuentra registrado.")
+
+        else:
+
+            price = input("Ingrese el nuevo precio del producto: ")
+            price = verify_float(price)
+            price = verify_positive(price,"float")
+
+            products[name] = (price,products[name][0])
+
+            print(f"Se ha cambiado el precio del producto {name} a {price}.")
+        
     
+    main()
+
+
+def option_4_delete_product():
+
+    if len(products) == 0:
+        print("No hay productos registrados.")
+
+    else:
+
+
+        name = input("Ingrese el nombre del producto que desea eliminar: ")
+
+        if name not in products.keys():
+
+            print(f"El producto con nombre {name} no se encuentra registrado.")
+
+        else:
+
+            del products[name]
+
+            print(f"Se ha eliminado el producto con nombre {name} exitosamente.")
+
+    main()
+    
+    
+
+def option_5_calculate_total_inventory():
+
+    if len(products) == 0:
+
+        print("No hay productos registrados.")
+    
+    else:
+
+        total_money = 0
+
+        adding_money = lambda x,y: x + y
+
+        for i in products.values():
+
+            total_money = adding_money(total_money,i[0]*i[1])
+
+        print(f"La cantidad total de inventario es {total_money}")
+
+    main()
+    
+
+
+    
+main()
