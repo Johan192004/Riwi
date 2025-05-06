@@ -6,14 +6,12 @@ cuenta = {
     "saldo": 455623,
 }
 
-ingreso_contraseña = False
-
 def verificar_entero(numero):
 
     while 1:
 
         if numero.isdigit():
-            return int(numero)
+            return int(numero) #Castear cast
         
         else:
 
